@@ -1,0 +1,62 @@
+// @primary-color: #32b642; // 全局主色
+// @link-color: #32b642; // 链接色
+// @warning-color: #faad14; // 警告色
+// @error-color: #f5222d; // 错误色
+// @font-size-base: 14px; // 主字号
+// @heading-color: rgba(0, 0, 0, 0.85); // 标题色
+// @text-color: rgba(0, 0, 0, 0.65); // 主文本色
+// @text-color-secondary : rgba(0, 0, 0, .45); // 次文本色
+// @disabled-color : rgba(0, 0, 0, .25); // 失效色
+// @border-radius-base: 4px; // 组件/浮层圆角
+// @border-color-base: #d9d9d9; // 边框色
+// @box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15); // 浮层阴影
+// @line: #e8e8e8; // 分割线颜色
+
+
+.dynamicText{
+    color:#12a3f5;
+    animation: shadowing 1s ease-in-out infinite alternate;
+    
+}
+
+@keyframes shadowing{
+    to{
+        color:aqua;
+        text-shadow:20px 0 70px aqua;
+    }
+}
+.nameColorList(100);
+.nameColorList(@n, @i: 1) when (@i =< @n) {
+    .dynamicText:nth-child(@{i}) {
+        animation-delay: (@i * 0.05s);
+    }
+.nameColorList(@n, (@i + 1));
+}
+
+// 数值
+
+.widthList(100);
+.widthList(@n, @i: 1) when (@i =< @n) {
+    .width@{i} {
+        width: (@i + 0%);
+    }
+    .minWidth@{i} {
+        min-width: (@i + 0%);
+    }
+.widthList(@n, (@i + 1));
+}
+
+
+.heightList(100);
+.heightList(@n, @i: 1) when (@i =< @n) {
+    .height@{i} {
+        height: (@i + 0%);
+    }
+    .minHeight@{i} {
+        min-height: (@i + 0%);
+    }
+    .maxHeight@{i} {
+        max-height: (@i + 0%);
+    }
+.heightList(@n, (@i + 1));
+}
