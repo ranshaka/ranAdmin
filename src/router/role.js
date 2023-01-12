@@ -262,8 +262,8 @@ export const roles = [
     {
         "path": "index",
         "name": "index",
-        'en':"大屏",
-        'cn':"大屏",
+        'en':"大屏系统",
+        'cn':"大屏系统",
         children:[
             {
                 path:"map",

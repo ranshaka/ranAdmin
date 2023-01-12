@@ -124,8 +124,7 @@
             // 菜单类型
             const isMenu = computed(() => store.getters.isMenu)
             // 菜单列表
-            const munePath = ref([])
-            munePath.value = store.getters.allMenu
+            const munePath = computed(() => store.getters.allMenu)
 
             // 系统设置
             const direction = computed(() => store.getters.direction ? 'rtl' : 'ltr')

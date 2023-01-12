@@ -105,7 +105,7 @@
                                             :class="systemIndex==index ? 'systemListAction':''" class="systemList">
                                             <a-avatar :size="50"
                                                 src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png" />
-                                            <div>{{item.en}}</div>
+                                            <div>{{ $t(`menu.${item.path}`)}}</div>
                                         </div>
                                     </div>
                                 </a-scrollbar>
@@ -157,7 +157,7 @@ import colorPicker from "@/components/colorPicker"
                 store.commit("baseinfo/SET_ALL_LOADING", true)
                 setTimeout(() => {
                     store.commit("baseinfo/SET_ALL_LOADING", false)
-                }, 5000)
+                }, 2000)
             }
 
             // 白天/黑夜模式

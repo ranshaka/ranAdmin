@@ -8,6 +8,7 @@
 -->
 
 <template>
+  <a-config-provider   component-size="small"  prefixCls="custom-dark"   >
     <div class="content mapInfo" id="mapInfo">
         <div id="mapApp" class="mapApp" style="width:100%;height:100%;">
         </div>
@@ -16,6 +17,9 @@
         <mapright></mapright>
         <mapbottom></mapbottom>
     </div>
+  
+  </a-config-provider>
+  
 </template>
 
 <script>
