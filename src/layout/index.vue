@@ -9,9 +9,9 @@
                     <layoutAside :style="fixedTop?'position: fixed;width: 200px;':''" ></layoutAside>
                 </a-layout-sider>
                 <a-layout-content>
-                    <pathBar :style="fixedTop?{position:'fixed',zIndex: 10}:null"></pathBar>
-                    <breadcrumb :style="fixedTop?{ position: 'fixed', zIndex: 10, width: '100%', marginTop:'40px'}:null"></breadcrumb>
-                    <div  class=" content background layout-body" >
+                    <pathBar v-if="isPathbar" :style="fixedTop?{position:'fixed',zIndex: 10}:null"></pathBar>
+                    <breadcrumb v-if="isBreadcrumb" :style="fixedTop?{ position: 'fixed', zIndex: 10, width: '100%',  marginTop:isPathbar?'40px':'0'}:null"></breadcrumb>
+                    <div  class=" content background " :style="maxHeidht">
                         <router-view></router-view>
                     </div>
                 </a-layout-content>
@@ -57,10 +57,13 @@
         computed: {
             // 动态计算 功能页面 高度
             maxHeidht() {
-                let height = 60
-                height += this.isPathbar ? 45 : 0
-                height += this.isBreadcrumb ? 36 : 0
-                return `height:calc(100vh - ${height}px)`
+                let height = 80
+                height -= isPathbar.value ? 45 : 0
+                height -= isBreadcrumb.value ? 36 : 0
+                // return `height:calc(100vh - ${height}px)`
+                console.log(height,"**************************")
+                return `margin:${height}px 10px 10px 10px;`
+                
             }
         },
         setup() {
@@ -84,8 +87,12 @@
             // 菜单类型
             const isMenu = computed(() => store.getters.isMenu)
 
-
-
+            const  maxHeidht=computed(()=>{
+                let height = 80
+                height -= isPathbar.value ? 0 : 45
+                height -= isBreadcrumb.value ? 0 : 25
+                return `margin:${height}px 10px 10px 10px;`
+            })
             //  页面切换效果 左---右
             const tagView = computed(() => store.getters.tagView)
             const transitionNames = ref("slide-right")
@@ -113,6 +120,7 @@
                 isPathbar,
                 fixedTop,
                 transitionNames,
+                maxHeidht,
             }
         },
     })

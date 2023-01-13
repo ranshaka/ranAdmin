@@ -236,6 +236,7 @@ import colorPicker from "@/components/colorPicker"
             const isPathbar = computed({
                 get: () => store.getters.isPathbar,
                 set: (value) => {
+                    console.log(value)
                     window.localStorage.setItem("isPathbar", value)
                     store.commit('baseinfo/SET_IS_PATH_BAR', value)
                 }

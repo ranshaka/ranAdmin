@@ -13,43 +13,47 @@
                 </a-col>
                 <a-col :span="14">
                     <template v-if="!isMenu">
-                        <a-menu mode="horizontal" @select="selectChange" v-model:selectedKeys="selectedKeys">
-                            <template v-for="(value,index) in munePath" :key="index">
-                                <template :index="value.path" v-if="value && value.children">
-                                    <a-sub-menu :key="value.path" :index="value.path" v-if="value && value.children">
-                                        <template #title>
+                        <a-config-provider  prefixCls="ant">
+                            <a-menu mode="horizontal" @select="selectChange" v-model:selectedKeys="selectedKeys">
+                                <template v-for="(value,index) in munePath" :key="index">
+                                    <template :index="value.path" v-if="value && value.children">
+                                        <a-sub-menu :key="value.path" :index="value.path"
+                                            v-if="value && value.children">
+                                            <template #title>
+                                                <span class="anticon anticon-desktop">
+                                                    <svg class="icon-2x margin-right-1x" aria-hidden="true">
+                                                        <use :xlink:href="value.icon"></use>
+                                                    </svg>
+                                                </span>
+                                                <span>{{ $t(`menu.${value.path}`)}}</span>
+                                            </template>
+                                            <a-menu-item v-for="(item) in value.children" :key="item.path">
+                                                <span class="anticon anticon-desktop">
+                                                    <svg class="icon-2x margin-right-1x" aria-hidden="true">
+                                                        <use :xlink:href="item.icon"></use>
+                                                    </svg>
+
+                                                </span>
+                                                <span>{{ $t(`menu.${item.path}`)}}</span>
+                                            </a-menu-item>
+                                        </a-sub-menu>
+                                    </template>
+                                    <template v-else>
+                                        <a-menu-item :key="value.path">
                                             <span class="anticon anticon-desktop">
                                                 <svg class="icon-2x margin-right-1x" aria-hidden="true">
                                                     <use :xlink:href="value.icon"></use>
                                                 </svg>
                                             </span>
                                             <span>{{ $t(`menu.${value.path}`)}}</span>
-                                        </template>
-                                        <a-menu-item v-for="(item) in value.children" :key="item.path">
-                                            <span class="anticon anticon-desktop">
-                                                <svg class="icon-2x margin-right-1x" aria-hidden="true">
-                                                    <use :xlink:href="item.icon"></use>
-                                                </svg>
-
-                                            </span>
-                                            <span>{{ $t(`menu.${item.path}`)}}</span>
                                         </a-menu-item>
-                                    </a-sub-menu>
-                                </template>
-                                <template v-else>
-                                    <a-menu-item :key="value.path">
-                                        <span class="anticon anticon-desktop">
-                                            <svg class="icon-2x margin-right-1x" aria-hidden="true">
-                                                <use :xlink:href="value.icon"></use>
-                                            </svg>
-                                        </span>
-                                        <span>{{ $t(`menu.${value.path}`)}}</span>
-                                    </a-menu-item>
-                                </template>
+                                    </template>
 
 
-                            </template>
-                        </a-menu>
+                                </template>
+                            </a-menu>
+                        </a-config-provider>
+
                     </template>
                 </a-col>
                 <a-col :span="4">
@@ -193,6 +197,10 @@
 
         background: none !important;
         color: #FFF;
+        line-height: inherit;
+    }
+    .common-layout>>>.ant-menu-horizontal {
+        border: none;
     }
 </style>
 <style scoped lang="less">

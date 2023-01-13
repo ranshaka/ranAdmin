@@ -2,7 +2,7 @@
  * @Description: Description
  * @Date: 2022-03-25 16:05:57
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-11-21 11:29:05
+ * @LastEditTime: 2023-01-12 14:17:33
  * @FilePath: \daobao-web\src\views\userInfo\userInfo.vue
 -->
 <template>
@@ -17,8 +17,8 @@
             </div>
             <div class=" width100 height80">
                 <div class="top_List flex space-between margin-right-1x margin-bottom-1x" v-for="(value,index) in 5" :key="value">
-                    <div class="mapright_top_box">
-                        1321312
+                    <div class=" svnTitle2">
+                        信息统计 {{ index }}
                     </div>
                     <div class="sign width40 " :class="'sign-'+ stylew[index%5]  " >
                         <div class="signBg" :style="`width:${index+1}5%; width:80%;` "></div>
@@ -139,7 +139,33 @@
             border: 1px solid red;
         }
 
-
+        .svnTitle2{
+            display: block;
+            padding-left:20px;
+            color:#EAEDF9;
+            /* text-shadow: 0 0 10px #0F5ACC,0 0 20px #0F5ACC,0 0 30px #0F5ACC,0 0 40px #0F5ACC; */
+            font-size: 14px;
+            height:40px;
+            line-height: 40px;
+            position: relative;
+            text-shadow:-1px 0 #0780D8,
+            0 1px #0780D8,
+            1px 0 #0780D8,
+            0 -1px #0780D8;
+        }
+        .svnTitle2::before{
+            content: "";
+            display: block;
+            position: absolute;
+            width:10px;
+            height:10px;
+            border-radius: 50%;
+            left:0;
+            top:50%;
+            margin-top:-5px;
+            background:#FFf;
+            /* margin-right:20px; */
+        }
     }
 
 </style>

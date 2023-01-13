@@ -12,26 +12,26 @@
                 autocomplete="off">
                 <a-form-item label="账号" name="account"
                     :rules="[{ required: true, message: '账号' }]">
-                    <a-input v-model:value="formState.account" />
+                    <a-input v-model:value="formState.account" size="large"  />
                 </a-form-item>
 
                 <a-form-item label="密码" name="password"
                     :rules="[{ required: true, message: '密码' }]">
-                    <a-input-password v-model:value="formState.password" style="height:40px;" />
+                    <a-input-password v-model:value="formState.password" size="large"  />
                 </a-form-item>
 
                 <a-form-item label="验证码" name="verifyCode"
                     :rules="[{ required: true, message: '验证码' }]">
                     <div>
                         <div class="flex">
-                            <a-input v-model:value="formState.verifyCode" :maxlength="4" style="width:50%;" />
+                            <a-input v-model:value="formState.verifyCode" size="large"  :maxlength="4" style="width:50%;" />
                             <identifyCodeView ref="identifyCodeViewRef"></identifyCodeView>
                         </div>
 
                     </div>
                 </a-form-item>
                 <a-form-item :wrapper-col="{ offset: 6, span: 16 }">
-                    <a-button type="primary" html-type="submit" class="width100" @click="startAnimation">Submit
+                    <a-button type="primary" html-type="submit" class="width100" size="large" @click="startAnimation">Submit
                     </a-button>
                 </a-form-item>
             </a-form>
