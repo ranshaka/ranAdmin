@@ -228,4 +228,50 @@ export default [
             title:"打赏",
         }
     },
+    
+    // admin账号
+
+    { 
+        path:"roleInfo",
+        name:"roleInfo",
+        component:()=>import("@/view/admin/base/roleInfo/roleInfo.vue"),
+        meta:{
+            title:"角色管理",
+        }
+    },
+    { 
+        path:"userInfo",
+        name:"userInfo",
+        component:()=>import("@/view/admin/base/userInfo/userInfo.vue"),
+        meta:{
+            title:"用户管理",
+        }
+    },
+    { 
+        path:"menu",
+        name:"menu",
+        component:()=>import("@/view/admin/menu/menu.vue"),
+        meta:{
+            title:"菜单管理",
+        }
+    },
+
+    
+    { 
+        path:"menuPermissionUser",
+        name:"menuPermissionUser",
+        component:()=>import("@/view/admin/menuPermission/menuPermissionUser.vue"),
+        meta:{
+            title:"权限管理",
+        }
+    },
+    
+    { 
+        path:"menuPermissionRole",
+        name:"menuPermissionRole",
+        component:()=>import("@/view/admin/menuPermission/menuPermissionRole.vue"),
+        meta:{
+            title:"权限管理",
+        }
+    },
 ]

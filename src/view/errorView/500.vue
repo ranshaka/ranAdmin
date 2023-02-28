@@ -1,3 +1,11 @@
+<!--
+ * @name: name
+ * @description: Description00
+ * @lastEditors: Francis
+ * @date: Do not edit
+ * @lastEditTime: Do not edit
+ * @filePath: Do not edit
+-->
 
 <template>
   <div class="content ">
@@ -5,7 +13,7 @@
       <div>
         <a-result icon="error" title="500 服务器错误" sub-title="上回上一个页面">
           <template #extra>
-            <a-button type="primary">Back</a-button>
+            <a-button type="primary" @click="toback">Back</a-button>
           </template>
         </a-result>
       </div>
@@ -18,26 +26,22 @@
 
 <script>
   import {
-    computed,
     defineComponent,
-    onMounted, //响应式
-    ref,
-    watch,
-    nextTick
   } from 'vue';
   import {
-    useStore
-  } from "vuex";
-  import {
-    roles
-  } from "@/router/role"
+        useRouter
+    } from 'vue-router';
   export default defineComponent({
     name: 'BusinessManagement',
     components: {},
     setup() {
-
+      const router = useRouter()
+      const toback=()=>{
+        // router.back()
+        router.go(-1)
+      }
       return {
-
+        toback
 
       }
     }

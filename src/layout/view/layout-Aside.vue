@@ -58,11 +58,11 @@
         computed,
         ref,
         reactive,
-        onMounted,
+        
     } from "@vue/reactivity";
     import store from "@/store";
 
-    import { useRouter } from 'vue-router';
+    import { useRouter,onBeforeRouteUpdate } from 'vue-router';
     export default {
         setup() {
             const router=useRouter()
@@ -76,6 +76,13 @@
             const selectChange=(item)=>{
                 router.push(item.key)
             }
+
+            // 监听路由变化
+            onBeforeRouteUpdate(e=>{
+                selectedKeys.value=[e.path]
+                openKeys.value=[e.matched[1].path]
+            })
+           
             return {
                 munePath,
                 isCollapse,

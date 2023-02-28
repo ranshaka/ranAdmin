@@ -143,9 +143,6 @@ import colorPicker from "@/components/colorPicker"
             colorPicker
         },
         setup() {
-            const changeDark = (flag) => {
-                
-            }
             // 个人信息
             const visible = ref(false)
             const form = ref(true)
@@ -157,6 +154,7 @@ import colorPicker from "@/components/colorPicker"
                 store.commit("baseinfo/SET_ALL_LOADING", true)
                 setTimeout(() => {
                     store.commit("baseinfo/SET_ALL_LOADING", false)
+                    visible.value=false
                 }, 2000)
             }
 
@@ -168,7 +166,6 @@ import colorPicker from "@/components/colorPicker"
                     window.localStorage.setItem("themes", value)
                 }
             })
-            console.log(themes)
             const themesColor = computed(()=>store.getters.themesColor)
             watch(
                 themesColor, (newval, oldval) => {
@@ -208,7 +205,6 @@ import colorPicker from "@/components/colorPicker"
                     store.commit('baseinfo/SET_FIXEDTOP', value);
                 }
             })
-            console.log(fixedTop.value)
             const isMenu = computed({
                 get: () => store.getters.isMenu,
                 set: (value) => {
@@ -254,7 +250,6 @@ import colorPicker from "@/components/colorPicker"
 
 
             return {
-                changeDark,
                 router,
                 visible,
                 system,
@@ -286,7 +281,7 @@ import colorPicker from "@/components/colorPicker"
         right: 10px;
         top: 40%;
         z-index: 10;
-        width: 50px;
+        width: 30px;
         height: 30px;
         cursor: pointer;
 
