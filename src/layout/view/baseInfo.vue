@@ -272,9 +272,6 @@ import colorPicker from "@/components/colorPicker"
     }
 </script>
 <style scoped lang="less">
-    .colorCar {
-        background: var(less-background);
-    }
 
     .baseImg {
         position: fixed;
@@ -289,10 +286,7 @@ import colorPicker from "@/components/colorPicker"
             width: 100%;
         }
     }
-    .custom-dark-drawer-body .background{
-        background:#000;
-	    color:#FFF;
-    }
+
     .baseUserInfo {
         box-shadow: var(--a-box-shadow-dark);
         height: 100%;

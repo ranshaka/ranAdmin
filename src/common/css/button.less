@@ -1,0 +1,434 @@
+@colorList:#e54d42 #f37b1d #fbbd08 #8dc63f #39b54a #1cbbb4 #0081ff #6739b6 #9c26b0 #e03997 #a5673f #8799a3 #aaaaaa #333333 #ffffff;
+@colorName:red orange yellow olive green cyan blue purple mauve pink brown grey gray black white;
+
+.linkMixin(@className, @color){
+    .anim-but-1-@{className}:hover {
+        animation: animation1 1s forwards;
+        background:  ~" radial-gradient(circle, @{color}  0.2em, transparent 0.25em) 0 0/1.25em 1.25em, radial-gradient(circle,  @{color} 0.2em, transparent 0.25em) 6.25em 6.25em/1.25em 1.25em";
+        color: #FFF;
+    }
+
+    .anim-but-2-@{className}:hover {
+        animation: animation2 0.35s infinite linear;
+        background: ~"linear-gradient(45deg, @{color} 0.5em, transparent 0.5em) 0 0/1em 1em, linear-gradient(-45deg, @{color} 0.5em, transparent 0.5em) 0 0/1em 1em";
+        color: #FFF;
+    }
+    .anim-but-3-@{className}:hover {
+        color: #FFF;
+         animation: animation3 1s linear infinite;
+            background: ~"linear-gradient(135deg, @{color} 0.25em, transparent 0.25em) -0.5em 0, linear-gradient(225deg, @{color} 0.25em, transparent 0.25em) -0.5em 0, linear-gradient(315deg, rgba(238, 161, 99, 0.25) 0.25em, transparent 0.25em) 0 0, linear-gradient(45deg, rgba(238, 161, 99, 0.25) 0.25em, transparent 0.25em) 0 0;";
+            background-size: 0.75em 0.75em;   
+    }
+    .anim-but-4-@{className}:hover {
+        color: #FFF;
+         animation: animation2 1s linear infinite;
+            background:~" repeating-linear-gradient(45deg, @{color} 0, @{color} 0.25em, transparent 0.25em, transparent 0.5em);";
+            background-size: 0.75em 0.75em;   
+    }
+    .anim-but-5-@{className}:hover {
+        color: #FFF;
+         animation: animation5 1s linear infinite;
+            background:~"radial-gradient(circle, @{color} 43%, transparent 50%) 0 0/1em 1em, radial-gradient(circle, @{color} 43%, transparent 50%) 0.5em 0.5em/2em 2em;";
+            background-size: 0.75em 0.75em;   
+    }
+    
+
+    // tag 动画
+   
+    .anim-tag-1-@{className} {
+        border: 1px solid @color;
+        color: @color;
+        &:after {
+            background: @color;
+            height: 0;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+        &:hover{
+            color:#FFf;
+            &:after {
+                height: 100%;
+            }
+        }
+        
+        
+    }
+
+    .anim-tag-2-@{className} {
+        border: 1px solid @color;
+        color: @color;
+        &:after {
+            background: @color;
+            height: 100%;
+            left: 0;
+            top: 0;
+            width: 0;
+        }
+        &:hover{
+            color:#FFf;
+            &:after {
+                width: 100%;
+            }
+        }
+    }
+    .anim-tag-3-@{className}{
+        border: 1px solid @color;
+        color: @color;
+        &:after {
+            background: @color;
+            height: 0;
+            left: 50%;
+            top: 50%;
+            width: 0;
+        }
+        &:hover{
+            color:#FFf;
+            &:after {
+                height: 100%;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+        }
+    }
+
+
+
+    .anim-tag-4-@{className}{
+        border: 1px solid @color;
+        color: @color;
+        &:after {
+            background: #FFF;
+            height: 100%;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+        &:hover:after {
+            height: 0;
+            left: 50%;
+            top: 50%;
+            width: 0;
+        }
+        &:before {
+       
+            background: @color;
+            height: 100%;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+        &:hover:before {
+            background: #fff;
+                height: 100%;
+                left: 0;
+                top: 0;
+                width: 100%;
+        }
+    }
+    .anim-tag-5-@{className}{
+        border: 1px solid @color;
+        color: @color;
+        overflow: hidden;
+        &:after {
+            background: @color;
+            height: 100%;
+            left: -60%;
+            top: 0;
+            transform: skew(50deg);
+            transition-duration: 0.6s;
+            transform-origin: top left;
+            width: 0;
+        }
+        &:hover{
+            color:#FFf;
+            &:after {
+                height: 100%;
+                width: 160%;
+            }
+        }
+
+     
+    }
+
+
+    .anim-tag-6-@{className}{
+        vertical-align: top;
+        color: @color;
+        border: 1px solid @color;
+        transition: all 0.2s ease-in-out;
+        position: relative;
+        opacity: 1;
+        overflow: hidden;
+        &:before {
+            content: "";
+            background-color: rgba(255, 255, 255, 0.5);
+            height: 100%;
+            width: 3em;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -4.5em;
+            transform: skewX(-45deg) translateX(0);
+            transition: none;
+        }
+        &:hover {
+            background-color: @color;
+            color: #fff;
+            &:before {
+                transform: skewX(-45deg) translateX(260px);
+                transition: all 0.5s ease-in-out;
+            }
+        }
+    }
+
+    
+    .anim-dot-@{className}{
+        border: 1px solid @color;
+        color:@color;
+        position: relative;
+        padding: 0 15px;
+        font-size: 14px;
+        height: 32px;
+        line-height: 32px;
+        border-radius: 5px;
+        text-transform: uppercase;
+
+        &:before,
+        &:after {
+            box-sizing: border-box;
+        }
+
+        &:hover .dot,&:focus .dot{
+            animation: animation6 2s infinite linear;
+            display: block;   
+        }
+        .dot{
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 10px;
+            height: 100%;
+            border-radius: 50%;
+            transition: all 300ms ease;
+            display: none;
+            &:after {
+                content: '';
+                position: absolute;
+                top: -6px;
+                height: 5px;
+                width: 5px;
+                background: @color;
+                border-radius: 50%;
+                border: 4px solid @color;
+                box-shadow: 0 0 .7em @color,
+                    0 0 2em @color;
+            }
+            
+        }
+    }
+    .anim-light-@{className}{
+        text-align: center;
+        position: relative;
+        color: @color;
+        font-size: 24px;
+        text-transform: uppercase;
+        transition: 0.5s;
+        letter-spacing: 4px;
+        margin-top:10px;
+        cursor: pointer;
+        overflow: hidden; 
+        &:hover {
+            background-color: @color;
+            color: #fff;
+            box-shadow: 0 0 5px @color,
+                0 0 25px @color,
+                0 0 50px @color,
+                0 0 200px @color,
+        }
+        div{
+            position: absolute;
+            &:nth-child(1) {
+                width: 100%;
+                height: 2px;
+                top: 0;
+                left: -100%;
+                background: linear-gradient(to right, transparent, @color);
+                animation: light1 1s linear infinite;
+            }
+            &:nth-child(2) {
+                width: 2px;
+                height: 100%;
+                top: -100%;
+                right: 0;
+                background: linear-gradient(to bottom, transparent, @color);
+                animation: light2 1s linear infinite;
+                animation-delay: 0.25s;
+            }
+            &:nth-child(3) {
+                width: 100%;
+                height: 2px;
+                bottom: 0;
+                right: -100%;
+                background: linear-gradient(to left, transparent, @color);
+                animation: light3 1s linear infinite;
+                animation-delay: 0.5s;
+            }
+            &:nth-child(4) {
+                width: 2px;
+                height: 100%;
+                bottom: -100%;
+                left: 0;
+                background: linear-gradient(to top, transparent, @color);
+                animation: light4 1s linear infinite;
+                animation-delay: 0.75s;
+            }
+        }
+
+         
+
+         
+
+         
+
+         
+    }
+};
+    
+
+
+.loop(@index) when(@index <= length(@colorList)){
+    .linkMixin(extract(@colorName,@index), extract(@colorList,@index));
+	.loop(@index + 1);
+};
+
+.loop(0);
+
+.anim-tag{
+    padding: 0 15px;
+    font-size: 14px;
+    height: 32px;
+    line-height: 32px;
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.anim-tag::before,.anim-tag::after{
+    content: '';
+    position: absolute;
+    z-index: -2;
+    // border-radius: 3px;
+    -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+}
+
+.anim-bg{
+    transition: 0.4s;
+    background-size: 220% auto;
+}
+.anim-bg:hover {
+  
+    background-position: right center;
+}
+
+
+@keyframes animation1 {
+	100% {
+		background-size: 2.375em 2.375em, 0.1em 0.1em;
+	}
+}
+@keyframes animation2 {
+    100% {
+        background-position: 1em 0;
+    }
+}
+@keyframes animation3 {
+    100% {
+        background-position: 1em 0, 1em 0, -0.75em 0, -0.75em 0;
+    }
+}
+@keyframes animation5 {
+    50% {
+        background-position: 0.66em 0.66em, -0.33em -0.33em;
+    }
+
+    100% {
+        background-size: 2em 2em, 1em 1em;
+        background-position: -1.5em -1.5em, -1em -1em;
+    }
+}
+
+
+/*calc(160px - 36px)  按钮宽度 - dot宽度 - 边框宽度*/
+@keyframes animation6 {
+    0% {
+        transform: translateX(0) rotate(0);
+    }
+
+    30% {
+        transform: translateX(24px) rotate(0);
+    }
+
+    50% {
+        transform: translateX(24px) rotate(180deg);
+    }
+
+    80% {
+        transform: translateX(0) rotate(180deg);
+    }
+
+    100% {
+        transform: translateX(0) rotate(360deg);
+    }
+}
+
+
+
+
+@keyframes light1 {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes light2 {
+    0% {
+        top: -100%;
+    }
+
+    50%,
+    100% {
+        top: 100%;
+    }
+}
+
+@keyframes light3 {
+    0% {
+        right: -100%;
+    }
+
+    50%,
+    100% {
+        right: 100%;
+    }
+}
+
+@keyframes light4 {
+    0% {
+        bottom: -100%;
+    }
+
+    50%,
+    100% {
+        bottom: 100%;
+    }
+}

@@ -21,17 +21,13 @@
                                             v-if="value && value.children">
                                             <template #title>
                                                 <span class="anticon anticon-desktop">
-                                                    <svg class="icon-2x margin-right-1x" aria-hidden="true">
-                                                        <use :xlink:href="value.icon"></use>
-                                                    </svg>
+                                                    <svgView :svg="value.icon" ></svgView> 
                                                 </span>
                                                 <span>{{ $t(`menu.${value.path}`)}}</span>
                                             </template>
                                             <a-menu-item v-for="(item) in value.children" :key="item.path">
                                                 <span class="anticon anticon-desktop">
-                                                    <svg class="icon-2x margin-right-1x" aria-hidden="true">
-                                                        <use :xlink:href="item.icon"></use>
-                                                    </svg>
+                                                    <svgView :svg="item.icon" ></svgView> 
 
                                                 </span>
                                                 <span>{{ $t(`menu.${item.path}`)}}</span>
@@ -41,9 +37,7 @@
                                     <template v-else>
                                         <a-menu-item :key="value.path">
                                             <span class="anticon anticon-desktop">
-                                                <svg class="icon-2x margin-right-1x" aria-hidden="true">
-                                                    <use :xlink:href="value.icon"></use>
-                                                </svg>
+                                                <svgView :svg="value.icon" ></svgView> 
                                             </span>
                                             <span>{{ $t(`menu.${value.path}`)}}</span>
                                         </a-menu-item>
@@ -74,27 +68,35 @@
                             </a-dropdown>
                         </div>
                         <a-dropdown>
-                            <svg class="icon-4x" aria-hidden="true">
-                                <use
-                                    :xlink:href="locales =='en'?'#icon-zhongyingwenqiehuan-yingwen':'#icon-zhongyingwenqiehuan-zhongwen'">
-                                </use>
-                            </svg>
+                            <svgView svg="yingwen" v-if="locales =='en'"  />
+                            <svgView svg="zhongwen" v-else />
                             <template #overlay>
                                 <a-menu>
-                                    <a-menu-item @click="locales='zh-cn'">中文</a-menu-item>
-                                    <a-menu-item @click="locales='en'">英文</a-menu-item>
+                                    <a-menu-item @click="locales='zh-cn'">
+                                        <svgView svg="yingwen" />
+                                        中文
+                                    </a-menu-item>
+                                    <a-menu-item @click="locales='en'">
+                                        <svgView svg="zhongwen" />
+                                        英文
+                                    </a-menu-item>
                                 </a-menu>
                             </template>
                         </a-dropdown>
+                        <div style="20px;width:20px;"></div>
                         <a-dropdown>
-                            <svg class="icon-4x margin-right-2x" aria-hidden="true">
-                                <use :xlink:href="!themes?'#icon-qingtian-baitian':'#icon-heiyemoshi1'">
-                                </use>
-                            </svg>
+                            <svgView svg="baitian"  v-if="themes" />
+                            <svgView svg="heiyemoshi1" v-else />
                             <template #overlay>
                                 <a-menu>
-                                    <a-menu-item @click="themes=false">白天模式</a-menu-item>
-                                    <a-menu-item @click="themes=true">黑夜模式</a-menu-item>
+                                    <a-menu-item @click="themes=false">
+                                        <svgView svg="baitian"   />
+                                        白天模式
+                                    </a-menu-item>
+                                    <a-menu-item @click="themes=true">
+                                        <svgView svg="heiyemoshi1" />
+                                        黑夜模式
+                                    </a-menu-item>
                                 </a-menu>
                             </template>
                         </a-dropdown>
@@ -118,9 +120,11 @@
     import {
         useRouter
     } from 'vue-router';
+    import svgView from "@/common/svg/svg.vue"
     export default {
         components: {
-            baseInfo
+            baseInfo,
+            svgView
         },
         setup() {
             const router = useRouter()

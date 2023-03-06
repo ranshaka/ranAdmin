@@ -54,18 +54,7 @@
             pathBar,
             baseInfo,
         },
-        computed: {
-            // 动态计算 功能页面 高度
-            maxHeidht() {
-                let height = 80
-                height -= isPathbar.value ? 45 : 0
-                height -= isBreadcrumb.value ? 36 : 0
-                // return `height:calc(100vh - ${height}px)`
-                console.log(height,"**************************")
-                return `margin:${height}px 10px 10px 10px;`
-                
-            }
-        },
+   
         setup() {
             const router = useRouter()
             // 页面刷新
@@ -79,6 +68,7 @@
                     loading.value = false
                 });
             };
+            
             provide("reload", reload);
 
             const isBreadcrumb = computed(() => store.getters.isBreadcrumb)
@@ -91,7 +81,7 @@
                 let height = 80
                 height -= isPathbar.value ? 0 : 45
                 height -= isBreadcrumb.value ? 0 : 25
-                return `margin:${height}px 10px 10px 10px;`
+                return `margin:${fixedTop.value?height:10}px 10px 10px 10px;`
             })
             //  页面切换效果 左---右
             const tagView = computed(() => store.getters.tagView)

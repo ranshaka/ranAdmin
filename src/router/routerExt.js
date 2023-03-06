@@ -45,7 +45,34 @@ export default [
         component:()=>import("@/view/table/table.vue"),
         meta:{
             title:"table",
-            icon:"#icon-yewuliebiao",
+            icon:"yewuliebiao",
+        }
+    },
+    {
+        path:"button",
+        name:"button",
+        component:()=>import("@/view/basics/button/button.vue"),
+        meta:{
+            title:"button",
+            icon:"yewuliebiao",
+        }
+    },
+    {
+        path:"anim-button",
+        name:"anim-button",
+        component:()=>import("@/view/basics/button/anim-button.vue"),
+        meta:{
+            title:"anim-button",
+        
+        }
+    },
+    {
+        path:"text",
+        name:"text",
+        component:()=>import("@/view/basics/text/text.vue"),
+        meta:{
+            title:"bottom",
+            icon:"yewuliebiao",
         }
     },
 
@@ -55,7 +82,7 @@ export default [
         component:()=>import("@/view/echarts/echarts-line.vue"),
         meta:{
             title:"折线图",
-            icon:"#icon-zhexiantu",
+  
         }
     },
     {
@@ -64,7 +91,7 @@ export default [
         component:()=>import("@/view/echarts/echarts-pie.vue"),
         meta:{
             title:"饼图",
-            icon:"#icon-huanxingbingtu",
+ 
         }
     },
     {
