@@ -53,7 +53,7 @@ export default [
         name:"button",
         component:()=>import("@/view/basics/button/button.vue"),
         meta:{
-            title:"button",
+            title:"按钮",
             icon:"yewuliebiao",
         }
     },
@@ -62,7 +62,16 @@ export default [
         name:"anim-button",
         component:()=>import("@/view/basics/button/anim-button.vue"),
         meta:{
-            title:"anim-button",
+            title:"按钮-动画",
+        
+        }
+    },
+    {
+        path:"title",
+        name:"title",
+        component:()=>import("@/view/basics/title/title.vue"),
+        meta:{
+            title:"标题",
         
         }
     },

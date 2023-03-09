@@ -107,6 +107,14 @@ export const roles = [{
                 "id": "3c871908-4f91-dff0-87e9-6579e190162d222"
             },
             {
+                "path": "title",
+                "name": "title",
+                "cn": "标题",
+                "en": "icon",
+                "icon": "title",
+                "id": "3c871908-4f91-dff0-87e9-6579e190162d2222"
+            },
+            {
                 "path": "text",
                 "name": "text",
                 "cn": "文字",
