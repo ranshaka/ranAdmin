@@ -33,42 +33,42 @@
                 prizeData: [{
                         id: 1,
                         level: '2000元京东券',
-                        picture: 'https://joe.foshanlepin.com/lottery_draw/src/assets/img/j1.png'
+                        picture: '../../assets/images/user.jpg'
                     },
                     {
                         id: 2,
                         level: '300元京东券',
-                        picture: 'https://joe.foshanlepin.com/lottery_draw/src/assets/img/j1.png'
+                        picture: '../../assets/images/user.jpg'
                     },
                     {
                         id: 3,
                         level: '50个比特币',
-                        picture: 'https://joe.foshanlepin.com/lottery_draw/src/assets/img/j1.png'
+                        picture: '../../assets/images/user.jpg'
                     },
                     {
                         id: 4,
                         level: '50元话费券',
-                        picture: 'https://joe.foshanlepin.com/lottery_draw/src/assets/img/j1.png'
+                        picture: '../../assets/images/user.jpg'
                     },
                     {
                         id: 5,
                         level: '100元话费券',
-                        picture: 'https://joe.foshanlepin.com/lottery_draw/src/assets/img/j1.png'
+                        picture: '../../assets/images/user.jpg'
                     },
                     {
                         id: 6,
                         level: '100个比特币',
-                        picture: 'https://joe.foshanlepin.com/lottery_draw/src/assets/img/j1.png'
+                        picture: '../../assets/images/user.jpg'
                     },
                     {
                         id: 7,
                         level: '100个比特币',
-                        picture: 'https://joe.foshanlepin.com/lottery_draw/src/assets/img/j1.png'
+                        picture: '../../assets/images/user.jpg'
                     },
                     {
                         id: 8,
                         level: '100个比特币',
-                        picture: 'https://joe.foshanlepin.com/lottery_draw/src/assets/img/j1.png'
+                        picture: '../../assets/images/user.jpg'
                     }
                 ],
                 // 转动的圈数
@@ -183,14 +183,4 @@
         }
     }
 
-    .pointer {
-        position: absolute;
-        left: calc(50% - 46px);
-        top: calc(50% - 50px);
-        width: 100px;
-        height: 100px;
-        background-image: url('http://demo.sc.chinaz.net/Files/DownLoad/webjs1/201803/jiaoben5789/images/start.png');
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
 </style>

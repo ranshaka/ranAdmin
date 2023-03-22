@@ -2,39 +2,15 @@
  * @Description: Description
  * @Date: 2022-03-25 16:05:57
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-11-22 13:24:13
+ * @LastEditTime: 2023-01-11 11:37:36
  * @FilePath: \daobao-web\src\views\userInfo\userInfo.vue
 -->
 <template>
     <div class="mapbottom">
         <div class="mapbottom_box">
-            <a-table :data="tableData"  style="width: 100%" class="width100" id="Export">
-                <a-table-column prop="date" label="Date" width="150" />
-                <a-table-column prop="name" label="Name" width="120" />
-                <a-table-column prop="state" label="State" width="120" />
-                <a-table-column prop="city" label="City" width="120" />
-                <a-table-column label="Address" :show-overflow-tooltip="true">
-                    <template #default="scope">
-                        <div v-if="scope.row.flag" class="flex space-between">
-                            <a-input v-model="scope.row.address" placeholder="Please input" clearable />
-                            <div>
-                                <a-link link type="success" @click="scope.row.flag=false" style="width:30px;">保存
-                                </a-link>
-                            </div>
-                        </div>
-                        <div v-else class="flex space-between">
-                            <span>{{scope.row.address}}</span>
-                            <a-link link type="primary" @click="scope.row.flag=true">修改</a-link>
-                        </div>
-                    </template>
-                </a-table-column>
-                <a-table-column prop="zip" label="Zip" width="120" />
-                <a-table-column label="Operations" width="220">
-                    <template #default>
-                        <a-button type="primary" size="small" text bg>Detail</a-button>
-                        <a-button type="success" size="small" text bg>Edit</a-button>
-                    </template>
-                </a-table-column>
+            <a-table  :columns="columns" :data-source="tableData" style="width: 98%;margin:0 auto" 
+            :scroll="{ x: 'calc(700px + 50%)', y: 140 }"
+            class="width100" id="Export">
             </a-table>
         </div>
     </div>
@@ -48,37 +24,49 @@
         name: 'BusinessManagement',
         components: {},
         setup() {
-            const tableData = [{
-                    date: '2016-05-03',
-                    name: 'Tom',
-                    state: 'California',
-                    city: 'Los Angeles',
-                    address: 'No. 189, Grove St, Los Angeles',
-                    zip: 'CA 90036',
-                    tag: 'Home',
-                },
-                {
-                    date: '2016-05-02',
-                    name: 'Tom',
-                    state: 'California',
-                    city: 'Los Angeles',
-                    address: 'No. 189, Grove St, Los Angeles',
-                    zip: 'CA 90036',
-                    tag: 'Office',
-                },
-                {
-                    date: '2016-05-04',
-                    name: 'Tom',
-                    state: 'California',
-                    city: 'Los Angeles',
-                    address: 'No. 189, Grove St, Los Angeles',
-                    zip: 'CA 90036',
-                    tag: 'Home',
-                },
-
-            ]
+            const columns = [{
+  title: 'Name',
+  dataIndex: 'name',
+  key: 'name',
+}, {
+  title: 'Platform',
+  dataIndex: 'platform',
+  key: 'platform',
+}, {
+  title: 'Version',
+  dataIndex: 'version',
+  key: 'version',
+}, {
+  title: 'Upgraded',
+  dataIndex: 'upgradeNum',
+  key: 'upgradeNum',
+}, {
+  title: 'Creator',
+  dataIndex: 'creator',
+  key: 'creator',
+}, {
+  title: 'Date',
+  dataIndex: 'createdAt',
+  key: 'createdAt',
+}, {
+  title: 'Action',
+  key: 'operation',
+}];
+const tableData = [];
+for (let i = 0; i < 3; ++i) {
+    tableData.push({
+    key: i,
+    name: `Screem ${i + 1}`,
+    platform: 'iOS',
+    version: '10.3.4.5654',
+    upgradeNum: 500,
+    creator: 'Jack',
+    createdAt: '2014-12-24 23:12:00',
+  });
+}
             return {
-                tableData
+                tableData,
+                columns
             }
         }
     });

@@ -67,7 +67,9 @@ const state = {
     allloading:false, // 全局loading
 
     fixedTop:getlocalStorage("fixedTop",true,false), // 全局loading
-   
+
+    borderTop:getlocalStorage("borderTop",true,false), // 顶部边框
+      
 
     // 切换系统
     systemIndex:getlocalStorage("systemIndex",0), 
@@ -89,7 +91,10 @@ const mutations = {
     SET_ALL_LOADING: (state, all) => state.allloading = all,
     SET_AUTHORITY: (state, all) => state.authority = all,
     SET_FIXEDTOP: (state, all) => state.fixedTop = all,
-    ADD_TAG_VIEW: (state, tag) => { // 添加  tag 菜单
+    SET_BORDERTOP: (state, all) => state.borderTop = all,
+
+     // 添加  tag 菜单
+    ADD_TAG_VIEW: (state, tag) => {
         state.activeTagView = tag.path
         if (tag.path == "/") return
         if (!state.tagView.some((x) => x.path == tag.path)) {

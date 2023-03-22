@@ -1,0 +1,8 @@
+version: 0.20230322.41
+files:
+  - url: ranAdmin.exe
+    sha512: Wc1/1KWp306Q80uE83oWrPkeaX77+JtgmyAYibXg2ALBNMcHnUlUqMrAhbOy9aL43yR3z39cxfgAP29MErLJpg==
+    size: 63174654
+path: ranAdmin.exe
+sha512: Wc1/1KWp306Q80uE83oWrPkeaX77+JtgmyAYibXg2ALBNMcHnUlUqMrAhbOy9aL43yR3z39cxfgAP29MErLJpg==
+releaseDate: '2023-03-22T09:04:59.490Z'

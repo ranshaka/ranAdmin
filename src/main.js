@@ -1,3 +1,11 @@
+/*
+ * @name: name
+ * @description: Description
+ * @lastEditors: Francis
+ * @date: Do not edit
+ * @lastEditTime: Do not edit
+ * @filePath: Do not edit
+ */
 
 import { createApp } from 'vue'
 
@@ -19,6 +27,8 @@ import directive from '@/utils/directive';
 import adtDesign from "@/ant-design.js"
 import Antd from 'ant-design-vue';
 
+// svg
+import   "@/common/svg/index"
 
 // import 'ant-design-vue/dist/antd.css';
 import 'ant-design-vue/dist/antd.variable.min.css'

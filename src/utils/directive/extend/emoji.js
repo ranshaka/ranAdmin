@@ -8,7 +8,7 @@
  */
 // 背景：开发中遇到的表单输入，往往会有对输入内容的限制，比如不能输入表情和特殊字符，只能输入数字或字母等。我们常规方法是在每一个表单的 on-change 事件上做处理。
 // 需求：根据正则表达式，设计自定义处理表单输入规则的指令，下面以禁止输入表情和特殊字符为例
-let findEle = (parent, type) => {
+let findEle = (parent, type) => {;
   return parent.tagName.toLowerCase() === type ? parent : parent.querySelector(type)
 }
 

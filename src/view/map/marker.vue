@@ -1,5 +1,3 @@
-@filePath: Do not edit
--->
 <template>
     <div class="contnt">
 
@@ -26,29 +24,29 @@
         setup() {
             const store=useStore()
             const map=computed(()=>store.state.map.Amap)
-            onMounted(()=>{
-                setTimeout(()=>{
-                    addMarker(markerList)
-                },200)
+            // onMounted(()=>{
+            //     setTimeout(()=>{
+            //         addMarker(markerList)
+            //     },200)
                
-            })
-            const styleList=[
-                new AMap.Icon({
-                    image: require("@/view/map/images/1.png"),
-                    size: new AMap.Size(22, 22), //图标大小
-                    imageSize: new AMap.Size(22, 22)
-                }),
-                new AMap.Icon({
-                    image: require("@/view/map/images/3.png"),
-                    size: new AMap.Size(22, 22), //图标大小
-                    imageSize: new AMap.Size(22, 22)
-                }),
-                new AMap.Icon({
-                    image: require("@/view/map/images/2.png"),
-                    size: new AMap.Size(30, 30), //图标大小
-                    imageSize: new AMap.Size(30, 30)
-                }),
-            ]
+            // })
+            // const styleList=[
+            //     new AMap.Icon({
+            //         image: require("@/view/map/images/1.png"),
+            //         size: new AMap.Size(22, 22), //图标大小
+            //         imageSize: new AMap.Size(22, 22)
+            //     }),
+            //     new AMap.Icon({
+            //         image: require("@/view/map/images/3.png"),
+            //         size: new AMap.Size(22, 22), //图标大小
+            //         imageSize: new AMap.Size(22, 22)
+            //     }),
+            //     new AMap.Icon({
+            //         image: require("@/view/map/images/2.png"),
+            //         size: new AMap.Size(30, 30), //图标大小
+            //         imageSize: new AMap.Size(30, 30)
+            //     }),
+            // ]
              // 添加撒点
              const addMarker = (list) => {
                 let carlist = map.value.getMarker('carlist')

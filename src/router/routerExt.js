@@ -45,7 +45,43 @@ export default [
         component:()=>import("@/view/table/table.vue"),
         meta:{
             title:"table",
-            icon:"#icon-yewuliebiao",
+            icon:"yewuliebiao",
+        }
+    },
+    {
+        path:"button",
+        name:"button",
+        component:()=>import("@/view/basics/button/button.vue"),
+        meta:{
+            title:"按钮",
+            icon:"yewuliebiao",
+        }
+    },
+    {
+        path:"anim-button",
+        name:"anim-button",
+        component:()=>import("@/view/basics/button/anim-button.vue"),
+        meta:{
+            title:"按钮-动画",
+        
+        }
+    },
+    {
+        path:"title",
+        name:"title",
+        component:()=>import("@/view/basics/title/title.vue"),
+        meta:{
+            title:"标题",
+        
+        }
+    },
+    {
+        path:"text",
+        name:"text",
+        component:()=>import("@/view/basics/text/text.vue"),
+        meta:{
+            title:"bottom",
+            icon:"yewuliebiao",
         }
     },
 
@@ -55,7 +91,7 @@ export default [
         component:()=>import("@/view/echarts/echarts-line.vue"),
         meta:{
             title:"折线图",
-            icon:"#icon-zhexiantu",
+  
         }
     },
     {
@@ -64,7 +100,7 @@ export default [
         component:()=>import("@/view/echarts/echarts-pie.vue"),
         meta:{
             title:"饼图",
-            icon:"#icon-huanxingbingtu",
+ 
         }
     },
     {
@@ -226,6 +262,52 @@ export default [
         component:()=>import("@/view/Reward/Reward.vue"),
         meta:{
             title:"打赏",
+        }
+    },
+    
+    // admin账号
+
+    { 
+        path:"roleInfo",
+        name:"roleInfo",
+        component:()=>import("@/view/admin/base/roleInfo/roleInfo.vue"),
+        meta:{
+            title:"角色管理",
+        }
+    },
+    { 
+        path:"userInfo",
+        name:"userInfo",
+        component:()=>import("@/view/admin/base/userInfo/userInfo.vue"),
+        meta:{
+            title:"用户管理",
+        }
+    },
+    { 
+        path:"menu",
+        name:"menu",
+        component:()=>import("@/view/admin/menu/menu.vue"),
+        meta:{
+            title:"菜单管理",
+        }
+    },
+
+    
+    { 
+        path:"menuPermissionUser",
+        name:"menuPermissionUser",
+        component:()=>import("@/view/admin/menuPermission/menuPermissionUser.vue"),
+        meta:{
+            title:"权限管理",
+        }
+    },
+    
+    { 
+        path:"menuPermissionRole",
+        name:"menuPermissionRole",
+        component:()=>import("@/view/admin/menuPermission/menuPermissionRole.vue"),
+        meta:{
+            title:"权限管理",
         }
     },
 ]

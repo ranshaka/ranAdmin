@@ -6,22 +6,12 @@
  * @lastEditTime: Do not edit
  * @filePath: Do not edit
 -->
-<!--
- * @name: name
- * @description: Description
- * @lastEditors: Francis
- * @date: Do not edit
- * @lastEditTime: Do not edit
- * @filePath: Do not edit
--->
+
 
 <template>
     <div class="breadcrumb background">
         <a-breadcrumb>
             <template v-for="(value) in breadcrumb" :key="value.path">
-                <!-- <a-breadcrumb-item v-if="index==0">
-                    <span style="font-weight: 700;color:#303133">{{ $t(`menu.${value.meta.en}`)}}</span>
-                </a-breadcrumb-item> -->
                 <a-breadcrumb-item  :to="{ path:value.path}">
                     {{ $t(`menu.${value.path}`)}}
                 </a-breadcrumb-item>
@@ -41,7 +31,6 @@
         components: {},
         setup() {
             const breadcrumb = computed(() => router.currentRoute.value.matched)
-            console.log(breadcrumb)
             return {
                 breadcrumb,
 

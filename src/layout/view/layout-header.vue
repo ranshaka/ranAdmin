@@ -1,7 +1,6 @@
 <template>
     <div>
         <div class="common-layout ">
-
             <a-row>
                 <a-col :span="6">
                     <div class="layoutheader_Title">
@@ -13,43 +12,41 @@
                 </a-col>
                 <a-col :span="14">
                     <template v-if="!isMenu">
-                        <a-menu mode="horizontal" @select="selectChange" v-model:selectedKeys="selectedKeys">
-                            <template v-for="(value,index) in munePath" :key="index">
-                                <template :index="value.path" v-if="value && value.children">
-                                    <a-sub-menu :key="value.path" :index="value.path" v-if="value && value.children">
-                                        <template #title>
+                        <a-config-provider  prefixCls="ant">
+                            <a-menu mode="horizontal" @select="selectChange" v-model:selectedKeys="selectedKeys">
+                                <template v-for="(value,index) in munePath" :key="index">
+                                    <template :index="value.path" v-if="value && value.children">
+                                        <a-sub-menu :key="value.path" :index="value.path"
+                                            v-if="value && value.children">
+                                            <template #title>
+                                                <span class="anticon anticon-desktop">
+                                                    <svgView :svg="value.icon" ></svgView> 
+                                                </span>
+                                                <span>{{ $t(`menu.${value.path}`)}}</span>
+                                            </template>
+                                            <a-menu-item v-for="(item) in value.children" :key="item.path">
+                                                <span class="anticon anticon-desktop">
+                                                    <svgView :svg="item.icon" ></svgView> 
+
+                                                </span>
+                                                <span>{{ $t(`menu.${item.path}`)}}</span>
+                                            </a-menu-item>
+                                        </a-sub-menu>
+                                    </template>
+                                    <template v-else>
+                                        <a-menu-item :key="value.path">
                                             <span class="anticon anticon-desktop">
-                                                <svg class="icon-2x margin-right-1x" aria-hidden="true">
-                                                    <use :xlink:href="value.icon"></use>
-                                                </svg>
+                                                <svgView :svg="value.icon" ></svgView> 
                                             </span>
                                             <span>{{ $t(`menu.${value.path}`)}}</span>
-                                        </template>
-                                        <a-menu-item v-for="(item) in value.children" :key="item.path">
-                                            <span class="anticon anticon-desktop">
-                                                <svg class="icon-2x margin-right-1x" aria-hidden="true">
-                                                    <use :xlink:href="item.icon"></use>
-                                                </svg>
-
-                                            </span>
-                                            <span>{{ $t(`menu.${item.path}`)}}</span>
                                         </a-menu-item>
-                                    </a-sub-menu>
-                                </template>
-                                <template v-else>
-                                    <a-menu-item :key="value.path">
-                                        <span class="anticon anticon-desktop">
-                                            <svg class="icon-2x margin-right-1x" aria-hidden="true">
-                                                <use :xlink:href="value.icon"></use>
-                                            </svg>
-                                        </span>
-                                        <span>{{ $t(`menu.${value.path}`)}}</span>
-                                    </a-menu-item>
-                                </template>
+                                    </template>
 
 
-                            </template>
-                        </a-menu>
+                                </template>
+                            </a-menu>
+                        </a-config-provider>
+
                     </template>
                 </a-col>
                 <a-col :span="4">
@@ -70,27 +67,35 @@
                             </a-dropdown>
                         </div>
                         <a-dropdown>
-                            <svg class="icon-4x" aria-hidden="true">
-                                <use
-                                    :xlink:href="locales =='en'?'#icon-zhongyingwenqiehuan-yingwen':'#icon-zhongyingwenqiehuan-zhongwen'">
-                                </use>
-                            </svg>
+                            <svgView svg="yingwen" v-if="locales =='en'"  />
+                            <svgView svg="zhongwen" v-else />
                             <template #overlay>
                                 <a-menu>
-                                    <a-menu-item @click="locales='zh-cn'">中文</a-menu-item>
-                                    <a-menu-item @click="locales='en'">英文</a-menu-item>
+                                    <a-menu-item @click="locales='zh-cn'">
+                                        <svgView svg="yingwen" />
+                                        中文
+                                    </a-menu-item>
+                                    <a-menu-item @click="locales='en'">
+                                        <svgView svg="zhongwen" />
+                                        英文
+                                    </a-menu-item>
                                 </a-menu>
                             </template>
                         </a-dropdown>
+                        <div style="20px;width:20px;"></div>
                         <a-dropdown>
-                            <svg class="icon-4x margin-right-2x" aria-hidden="true">
-                                <use :xlink:href="!themes?'#icon-qingtian-baitian':'#icon-heiyemoshi1'">
-                                </use>
-                            </svg>
+                            <svgView svg="baitian"  v-if="themes" />
+                            <svgView svg="heiyemoshi1" v-else />
                             <template #overlay>
                                 <a-menu>
-                                    <a-menu-item @click="themes=false">白天模式</a-menu-item>
-                                    <a-menu-item @click="themes=true">黑夜模式</a-menu-item>
+                                    <a-menu-item @click="themes=false">
+                                        <svgView svg="baitian"   />
+                                        白天模式
+                                    </a-menu-item>
+                                    <a-menu-item @click="themes=true">
+                                        <svgView svg="heiyemoshi1" />
+                                        黑夜模式
+                                    </a-menu-item>
                                 </a-menu>
                             </template>
                         </a-dropdown>
@@ -100,7 +105,7 @@
         </div>
     </div>
 </template>
-<script>
+<script setup>
     import {
         computed,
         ref,
@@ -114,18 +119,21 @@
     import {
         useRouter
     } from 'vue-router';
-    export default {
-        components: {
-            baseInfo
-        },
-        setup() {
-            const router = useRouter()
-            const appName = ref(store.getters.appName)
+    import svgView from "@/common/svg/svg.vue"
+    // import {sizeBtn,winDown,winMove,winUp} from "@/electron_layout/border.js"
+
+            const sizeBtns=()=>{
+                console.log(123131)
+                // sizeBtn()
+            }
+            // const winDowns=winDown()
+            // const winMoves=winMove()
+            // const winUps = winUp()
+            // const appName = ref(store.getters.appName)
             // 菜单类型
             const isMenu = computed(() => store.getters.isMenu)
             // 菜单列表
-            const munePath = ref([])
-            munePath.value = store.getters.allMenu
+            const munePath = computed(() => store.getters.allMenu)
 
             // 系统设置
             const direction = computed(() => store.getters.direction ? 'rtl' : 'ltr')
@@ -164,21 +172,8 @@
                 router.push("/")
                 // window.location.reload()
             }
-            return {
-                appName,
-                appName,
-                isMenu,
-                munePath,
-                visible,
-                locales,
-                themes,
-                direction,
-                selectChange,
-                selectedKeys,
-                LogOut,
-            }
-        },
-    }
+
+    
 </script>
 <style scoped>
     .a-drawer {
@@ -194,11 +189,15 @@
 
         background: none !important;
         color: #FFF;
+        line-height: inherit;
+    }
+    .common-layout>>>.ant-menu-horizontal {
+        border: none;
     }
 </style>
 <style scoped lang="less">
     .common-layout {
-        // width: 100%;
+        width: 100%;
         height: 64px;
         max-height: 64px;
         overflow: hidden;

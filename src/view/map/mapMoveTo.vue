@@ -1,53 +1,61 @@
 
 <template>
-    <div class="homeInfo">
-        <div id="mapApp" class="mapApp" style="width:100%;height:100%;">
+     <div class="homeInfo">
+        00.0.
+        <div id="mapApp2" class="mapApp" style="width:100%;height:100%;">
         </div>
         <div class="homeInfoCar">
             <div >
                 <div style="display:flex;align-items: center;">
-                    <a-button type="warning" @click="startAnimation">重新播放</a-button>
-                    <a-slider v-model="sliderValue" 
+                    <a-button size="Default" type="warning" @click="startAnimation">重新播放</a-button>
+                    <!-- <a-slider v-model="sliderValue" 
                  
                     @change="ChangeAnimation" 
                      @input="inputAnimation"
                      :show-tooltip="true"
                      :format-tooltip="formatTooltip"
-                      style="width:400px;margin:20px;"   />
+                      style="width:400px;margin:20px;"   /> -->
+                      <div  style="width:500px;height:15px;margin:0 20px;" >
+                        <a-slider v-model:value="sliderValue" :tooltip-visible="true"  @change="ChangeAnimation" @afterChange="afterChangeAnimation" style="width:500px;height:15px;margin:0 20px;"  />
+                      </div>
+                     
                     <!-- <a-slider v-model:value="sliderValue" @input="ChangeAnimation"  style="width:500px;height:15px;margin:0 20px;" /> -->
-                    <div style="display:flex">
-                        <a-tag size="Default" @click="linebackspeedMIN">减速行驶</a-tag>
+
+                    <div style="display:flex" >
+                        <!-- <fast-backward-outlined  @click="linebackspeedMIN" title="暂停行驶" />
+                        <fast-forward-outlined  @click="linebackspeedMAX" title="加速行驶" />
+                        <play-circle-outlined @click="resumeAnimation"  title="继续行驶" />
+                        <stop-outlined  @click="resumeAnimation"  title="暂停行驶" /> -->
+
+                        <!-- <a-tag size="Default" @click="linebackspeedMIN">减速行驶</a-tag>
                         <a-tag size="Default" @click="pauseAnimation">暂停行驶</a-tag>
                         <a-tag size="Default" @click="resumeAnimation">继续行驶</a-tag>
-                        <a-tag size="Default" @click="linebackspeedMAX">加速行驶</a-tag>
-                            <!-- <FastBackwardOutlined style="color:#12a3f5;font-size:28px;" title="减速行驶"
+                        <a-tag size="Default" @click="linebackspeedMAX">加速行驶</a-tag> -->
+                            <FastBackwardOutlined style="color:#12a3f5;font-size:28px;" title="减速行驶"
                                 @click="linebackspeedMIN" />
-                            <PauseOutlined style="color:#12a3f5;font-size:28px;" title="暂停行驶" @click="pauseAnimation"
-                                v-if="PauseOutlinedFlag" />
+                            <PauseOutlined style="color:#12a3f5;font-size:28px;" title="暂停行驶" @click="pauseAnimation"  v-if="PauseOutlinedFlag" />
                             <CaretRightOutlined style="color:#12a3f5;font-size:28px;" title="继续行驶"
                                 @click="resumeAnimation" v-else />
                             <FastForwardOutlined style="color:#12a3f5;font-size:28px;" title="加速行驶"
-                                @click="linebackspeedMAX" /> -->
+                                @click="linebackspeedMAX" />
+                               
                         </div>
                     </div>
              
             </div>
 
-            <a-table :data="tableData[tableDataIndex]" border style="width: 100%" 
-             :row-class-name="setRowClass"
+            <a-table size="small" :columns="columns" :data-source="tableData[tableDataIndex]"  border style="width: 100%" 
+             :rowClassName="setRowClass"  :scroll="{ x: 1500,}"  :pagination="false"
              id="Export">
-            <a-table-column prop="style" label="style" width="150" />
-            <a-table-column prop="name" label="name" width="120" />
-            <a-table-column prop="state" label="State" width="120" />
-            <a-table-column prop="address" label="地址"  />
         </a-table>
         <div class="flex space-between ">
             <div></div>
-            <a-pagination  background layout="prev, pager, next"   :page-size="tableDataSize"    @current-change="currentChange"  :current-page="tableDataIndex" :total="tableDataTotal" />
+            <a-pagination v-model:current="tableDataIndex" :total="tableDataTotal" :page-size="5" />
         </div>
       
         </div>
     </div>
+   
 </template>
 
 <script>
@@ -59,17 +67,30 @@
         watch,
         nextTick
     } from 'vue';
+    import { 
+        PauseOutlined,
+        CaretRightOutlined,
+        FastForwardOutlined,
+        FastBackwardOutlined,
+      
+    } from '@ant-design/icons-vue';
     import {
         useStore
     } from "vuex";
     import {markerList} from "@/view/map/map.js"
     export default defineComponent({
         name: 'BusinessManagement',
+        components:{
+            PauseOutlined,
+        CaretRightOutlined,
+        FastForwardOutlined,
+        FastBackwardOutlined,
+        },
         setup() {
             const store = useStore()
             const modelRef = ref(null)
             store.dispatch("map/AmapInit").then((amap) => {
-                amap.init("mapApp", {
+                amap.init("mapApp2", {
                     // mapStyle: 'amap://styles/darkblue', //设置地图的显示样式
                     rotateEnable: false,
                     pitchEnable: true,
@@ -81,8 +102,6 @@
                     skyColor: "#002d56", //天空颜色 倾斜后才会产生
                     center: [120.294189,30.161941],
                 })
-
-
             })
             const map=computed(()=>store.state.map.Amap)
             const sliderRef=ref(null)
@@ -97,13 +116,35 @@
             const totalmileage   = ref(0)     // 行驶总公里数
             const linebackspeed = ref(1000) // 行驶速度
             const totalDateTime = ref(0) // 行驶耗时
+            const columns=[
+                {
+                title: 'name',
+                dataIndex: 'name',
+                },
+                {
+                title: 'style',
+                dataIndex: 'style',
+                width:120,
+                },
+                {
+                title: '经纬度',
+                dataIndex: 'lnglat',
+                width:200,
+                },
+                {
+                title: '地址',
+                dataIndex: 'address',
+                },
+            ]
             var marker = null // 车辆markser
             var PolylinesArr = [] // 轨迹列表
             var gjlineArr = [] // 储存轨迹线段list
             var gjspotArr = [] // 储存轨迹点list
             var delayedpolylinTime = null // 车辆行驶 计时器
 
-
+            setTimeout(()=>{
+                SpoUppolyline()
+            },500)
             const formatAngle = (dv) => {
                 while (dv < 0) dv += 360;
                 while (dv >= 360) dv -= 360;
@@ -170,6 +211,7 @@
                         PauseOutlinedFlag.value = true
                         
                         let info = markerList
+                        console.log(info)
                         barSearchFlag.value = true
                         tableDataTotal.value=info.length
                           tableData.value = [
@@ -192,9 +234,7 @@
             }
 
 
-            setTimeout(()=>{
-                SpoUppolyline()
-            },500)
+           
 
 
 
@@ -368,10 +408,7 @@
             }
 
             var inputAnimationNumber=0
-            const ChangeAnimation = (e) => {
-                if(ChangeAnimation == PolylinesArr.length-1)return
-                afterChangeAnimation(inputAnimationNumber)
-            }
+           
             const inputAnimation = (e) => {
                 inputAnimationNumber=e
                 pauseAnimation()
@@ -385,63 +422,58 @@
                
             }
 
-            const afterChangeAnimation = (e) => {
-               
+            const ChangeAnimation = (e) => {
                 pauseAnimation()
-                let num = parseInt(PolylinesArr.length * (e / 100))
-                if (moveAlongIndex.value == num) {} 
-                else if (moveAlongIndex.value > num) {
-                    let line = gjlineArr.filter((x) => {
-                        return x.keys > num
-                    }).map(x => x.value)
-                    let spot = gjspotArr.filter((x) => {
-                        return x.keys > num
-                    }).map(x => x.value)
-                    gjlineArr = gjlineArr.filter((x) => {
-                        return x.keys > num
-                    })
-                    gjspotArr = gjspotArr.filter((x) => {
-                        return x.keys > num
-                    })
-                    map.value.amap.remove(line)
-                    map.value.amap.remove(spot)
-                } else {
-                    for (let i = moveAlongIndex.value; i < num; i++) {
+            }
+            
+            const afterChangeAnimation = (e) => {
+                 let Amap = map.value.amap
+                let num=parseInt(PolylinesArr.length * (e/100))
+                if(moveAlongIndex.value == num){
+                }else if(moveAlongIndex.value > num){
+                    let line= gjlineArr.filter((x)=>{return x.keys > num}).map(x=>x.value)
+                    let spot= gjspotArr.filter((x)=>{return x.keys > num}).map(x=>x.value)
+                    gjlineArr=gjlineArr.filter((x)=>{return x.keys > num})
+                    gjspotArr=gjspotArr.filter((x)=>{return x.keys > num})
+                    Amap.remove(line)
+                    Amap.remove(spot)
+                }else{
+                    for(let i=moveAlongIndex.value;i<num;i++){
                         let movingLine = new AMap.Polyline({
-                            path: [PolylinesArr[i - 1].value, PolylinesArr[i].value],
-                            map: map.value.amap,
-                            strokeWeight: 5,
-                            lineJoin: "round",
-                            strokeColor: PolylinesArr[i].color,
-                            zIndex: 110
-                        })
-
-                        gjspotArr.push({
-                            keys: i,
-                            value: movingLine,
-                        })
-                        let tempPoint = new AMap.Marker({
-                            map: map.value.amap,
-                            position: PolylinesArr[i].value,
-                            offset: new AMap.Pixel(-4, -4),
-                            icon: new AMap.Icon({
-                                image: 'https://a.amap.com/jsapi_demos/static/images/mass2.png', // Icon的图像
-                                size: new AMap.Size(8, 8),
-                                imageSize: new AMap.Size(8, 8),
-                            }),
-                            zIndex: 113
-                        })
-                        gjlineArr.push({
-                            keys: i,
-                            value: tempPoint,
-                        })
+                        path:[PolylinesArr[i-1].value,PolylinesArr[i].value],
+                        map: Amap,
+                        strokeWeight: 5,
+                        lineJoin: "round",
+                        strokeColor:  PolylinesArr[i].color,
+                        zIndex: 110
+                    })
+                    // movingLine.setPath([PolylinesArr[i-1].value,PolylinesArr[i]].value)
+                    gjspotArr.push({
+                        keys: i,
+                        value: movingLine,
+                    })
+                     let tempPoint = new AMap.Marker({
+                        map: Amap,
+                        position: PolylinesArr[i].value,
+                        offset: new AMap.Pixel(-4, -4),
+                        icon: new AMap.Icon({
+                            image: 'https://a.amap.com/jsapi_demos/static/images/mass2.png', // Icon的图像
+                            size: new AMap.Size(8, 8),
+                            imageSize: new AMap.Size(8, 8),
+                        }),
+                        zIndex: 113
+                    })
+                    gjlineArr.push({
+                        keys: i,
+                        value: tempPoint,
+                    })
                     }
 
                 }
-                moveAlongIndex.value = num + 1
-                marker.setPosition(PolylinesArr[num].value)
-                PauseOutlinedFlag.value = true
-                delayedpolylin()
+                moveAlongIndex.value=num+1
+                marker.setPosition(PolylinesArr[num].value )
+                   PauseOutlinedFlag.value = true
+                  delayedpolylin()
             }
             // 重新播放
             const startAnimation = () => {
@@ -488,7 +520,7 @@
             }
             // 监听表格动画 设置分页
             watch(moveAlongIndex, (e) => {
-                e / 5 <= 1 ? tableDataIndex.value = 1 : tableDataIndex.value = Math.ceil(e / 5)
+                tableDataIndex.value= ((e+1) / 5 <= 1) ? 1 : Math.ceil((e+1) / 5)
                 if(e==  PolylinesArr.length -1 )return  sliderValue.value  =100
                let number= (e / (PolylinesArr.length+1) * 100)
                 sliderValue.value = parseInt(number)
@@ -496,7 +528,7 @@
             // 监听表格动画 表格样式
 
             const setRowClass = (record, index) => {
-                if ((tableDataIndex.value-1) * 5 + record.rowIndex == moveAlongIndex.value) {
+                if ((tableDataIndex.value-1) * 5 + index == moveAlongIndex.value) {
                     return "tableActive"
                 } else {
                     return ""
@@ -514,12 +546,14 @@
             return {
                 // 参数
                 tableData,
+                columns,
                 tableDataTotal,
                 tableDataIndex,
                 tableDataSize,
                 sliderRef,
                 sliderValue,
                 totalmileage,
+                PauseOutlinedFlag,
                 ChangeAnimation,
                 inputAnimation,
                 afterChangeAnimation,

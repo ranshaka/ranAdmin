@@ -1,6 +1,14 @@
+<!--
+ * @name: name
+ * @description: Description
+ * @lastEditors: Francis
+ * @date: Do not edit
+ * @lastEditTime: Do not edit
+ * @filePath: Do not edit
+-->
 
 <template>
-    <router-view class="minHeight100" >
+    <router-view class="content" >
     </router-view>
 
   

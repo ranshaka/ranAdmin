@@ -9,9 +9,9 @@
 
 
 <template>
+    
     <div class="background"  >
-        <div class="a-menu-vertical-demo scrollBox ">
-            <div class="logo" />
+        <div :class="fixedTop?'a-menu-vertical-demo scrollBox':'' ">
             <a-menu mode="inline"  
             @select="selectChange" 
             v-model:selectedKeys="selectedKeys" v-model:openKeys="openKeys">
@@ -20,18 +20,14 @@
                         <a-sub-menu  :key="value.path" >
                         <template #title>
                             <span class="anticon anticon-desktop">
-                                <svg class="icon-2x margin-right-1x" aria-hidden="true">
-                                    <use :xlink:href="value.icon"></use>
-                                </svg>
+                                <svgView :svg="value.icon" ></svgView> 
                             </span>
                             <span>{{ $t(`menu.${value.path}`)}}</span>
                         </template>
                         <a-menu-item v-for="(item) in value.children" :key="item.path">
                             <span class="anticon anticon-desktop">
-                                <svg class="icon-2x margin-right-1x" aria-hidden="true">
-                                    <use :xlink:href="item.icon"></use>
-                                </svg>
-                            </span>
+                            <svgView :svg="item.icon"  ></svgView> 
+                        </span>
                             <span>{{ $t(`menu.${item.path}`)}}</span>
                         </a-menu-item>
                     </a-sub-menu>
@@ -39,9 +35,7 @@
                     <template v-else>
                         <a-menu-item :key="value.path" >
                         <span class="anticon anticon-desktop">
-                            <svg class="icon-2x margin-right-1x" aria-hidden="true">
-                                <use :xlink:href="value.icon"></use>
-                            </svg>
+                            <svgView :svg="value.icon"  ></svgView> 
                         </span>
                         <span>{{ $t(`menu.${value.path}`)}}</span>
                     </a-menu-item>
@@ -58,12 +52,15 @@
         computed,
         ref,
         reactive,
-        onMounted,
+        components
     } from "@vue/reactivity";
     import store from "@/store";
-
-    import { useRouter } from 'vue-router';
+    import svgView from "@/common/svg/svg.vue"
+    import { useRouter,onBeforeRouteUpdate } from 'vue-router';
     export default {
+        components:{
+            svgView
+        },
         setup() {
             const router=useRouter()
             const selectedKeys=ref([])
@@ -73,14 +70,23 @@
             const munePath = computed(() => store.getters.allMenu)
             const isCollapse = ref(false)
             openKeys.value=[router.currentRoute.value.matched[1].path]
+            const fixedTop = computed(() => store.getters.fixedTop)
             const selectChange=(item)=>{
                 router.push(item.key)
             }
+
+            // 监听路由变化
+            onBeforeRouteUpdate(e=>{
+                selectedKeys.value=[e.path]
+                openKeys.value=[e.matched[1].path]
+            })
+           
             return {
                 munePath,
                 isCollapse,
                 selectedKeys,
                 openKeys,
+                fixedTop,
                 selectChange,
             }
         },

@@ -1,6 +1,6 @@
 /*
  * @name: name
- * @description: Description
+ * @description: Descriptio
  * @lastEditors: Francis
  * @date: Do not edit
  * @lastEditTime: Do not edit
@@ -46,6 +46,7 @@ export default {
     modulesSize:state=>state.baseinfo.modulesSize, //  全局组件大小
     themesColor:state=>state.baseinfo.themesColor, //  主题颜色
     fixedTop:state=>state.baseinfo.fixedTop, // 功能权限
+    borderTop:state=>state.baseinfo.borderTop, // 顶部边框
 
     
     // 用户信息

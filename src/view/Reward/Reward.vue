@@ -6,12 +6,20 @@
  * @lastEditTime: Do not edit
  * @filePath: Do not edit
 -->
+<!--
+ * @name: name
+ * @description: Description
+ * @lastEditors: Francis
+ * @date: Do not edit
+ * @lastEditTime: Do not edit
+ * @filePath: Do not edit
+-->
 
 
 <template>
     <div class="content minHeight100">
         <div>
-            <a-alert title="本项目仅供学习参考，若被他人用于商业用途，与本人无关" type="success" />
+            <a-alert title="本项目仅供学习参考，若被他人用于商业用途，与作者无关" type="success" />
         </div>
         <div class="tips">
             <p>赠人玫瑰，手有余香</p>

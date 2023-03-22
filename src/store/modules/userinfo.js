@@ -56,7 +56,7 @@ export async function ResetRouter(index) {
     let routerinstall = await routerArrFun()
     //  路由初始化 根据权限匹配对应的路由
     var allRouter = await InitRouter(menu,routerinstall, "", true)
-    
+    console.log(allRouter)
     // 动态添加国际化配置
      
     store.commit("userinfo/SET_ALLROUTER", allRouter)
@@ -94,8 +94,9 @@ const dynamicRouter = async (index)=>{
 
     const allRouter=store.state.userinfo.allRouter
     const routerAction=[allRouter[index]]
-    await addDynamicRoute(routerAction)
     store.commit("userinfo/SET_MENU", routerAction[0].children)
+    await addDynamicRoute(routerAction)
+    
     router.push(routerAction[0].children[0].path)
 }
 

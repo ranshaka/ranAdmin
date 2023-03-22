@@ -75,7 +75,7 @@
             })
             const init = (type, numberPlates) => {
                 let Amap = store.getters.AmapInfo.getAmap()
-                console.log(map.value.amap)
+                console.log(map.amap)
                 console.log(Amap)
                 if (cleckMarkerFlash) {
                     Amap.remove(cleckMarkerFlash)

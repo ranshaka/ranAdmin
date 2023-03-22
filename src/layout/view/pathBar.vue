@@ -6,10 +6,18 @@
  * @lastEditTime: Do not edit
  * @filePath: Do not edit
 -->
+<!--
+ * @name: name
+ * @description: Description
+ * @lastEditors: Francis
+ * @date: Do not edit
+ * @lastEditTime: Do not edit
+ * @filePath: Do not edit
+-->
 <template>
     <div class="pathBar background scrollBox ">
         <div style="display:flex" class="pointer">
-            <a-tag size="Default" :color="value.path !=activeTagView?'green':'cyan'" v-for="(value,index) in tagView"
+            <a-tag size="Default" :color="value.path !=activeTagView?'green':'cyan'" style="background-color:var(--ant-primary-1)" v-for="(value,index) in tagView"
                 :key="value.path + index">
                 <template #icon>
                     <sync-outlined :spin="true"  v-if="value.path ==  activeTagView"  @click="Refresh"  />
@@ -71,11 +79,12 @@
         },
     }
 </script>
-<style scoped>
+<style scoped lang="less">
     .pathBar {
         width:100%;
         overflow-x: scroll;
         height: 40px !important;
         padding: 10px 10px;
+        
     }
 </style>
